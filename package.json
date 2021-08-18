@@ -1,0 +1,16 @@
+{
+  "name": "nsi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "eslint --ignore-path .gitignore .",
+    "lint-fix": "npx eslint --fix ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
