@@ -6,13 +6,25 @@ const { USERKEY, DICTIONARY } = process.env;
 
 async function getOnePage(userkey, dictionary, page = 1, size = 200) {
   const url = `https://nsi.rosminzdrav.ru:443/port/rest/data?userKey=${userkey}&identifier=${dictionary}&page=${page}&size=${size}`;
+  console.log('url', url);
   const result = [];
   try {
     const response = await axios.get(url);
     console.log('list.length', response.data.list.length);
     result.push(...response.data.list);
   } catch (error) {
-    console.log(error);
+    if (error.response) {
+      // Request made and server responded
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    } else if (error.request) {
+      // The request was made but no response was received
+      console.log(error.request);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.log('Error', error.message);
+    }
   }
   return result;
 }
